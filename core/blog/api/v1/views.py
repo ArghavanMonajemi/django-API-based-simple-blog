@@ -10,6 +10,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
+from .paginations import StandardCursorPagination
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
@@ -28,3 +29,4 @@ class PostViewSet(viewsets.ModelViewSet):
     filterset_fields = ['title','category','author']
     ordering_fields = ['pub_date']
     search_fields = ['title','author']
+    pagination_class = StandardCursorPagination
