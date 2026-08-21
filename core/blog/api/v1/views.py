@@ -11,6 +11,7 @@ from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 from .paginations import StandardCursorPagination
+from .permissions import IsOwnerOrReadOnly
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
@@ -24,7 +25,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.filter(status=1)
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend,OrderingFilter,SearchFilter]
     filterset_fields = ['title','category','author']
     ordering_fields = ['pub_date']
