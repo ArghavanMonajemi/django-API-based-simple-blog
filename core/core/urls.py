@@ -38,7 +38,8 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("blog/api/v1/", include("blog.api.v1.urls")),
+    path("blog/", include("blog.urls")),
+    path("account/", include("account.urls")),
     path('swagger/output.json/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
