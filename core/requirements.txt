@@ -1,5 +1,9 @@
+# General Modules
 Django>5.2,<5.3
 pillow
 djangorestframework
+
+# Third-Party Modules
 markdown
 django-filter
+drf-yasg[validation]
