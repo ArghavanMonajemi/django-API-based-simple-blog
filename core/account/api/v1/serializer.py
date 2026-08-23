@@ -17,9 +17,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
             validators.validate_password(attrs['password'])
         except ValidationError as e:
             raise serializers.ValidationError({'detail':list(e.messages)})
-        return self.validate(attrs)
+        return attrs
 
     def create(self, validated_data):
-        validated_data.pop('password1',None)
+        validated_data.pop('confirmation_password',None)
         return User.objects.create_user(**validated_data)
 

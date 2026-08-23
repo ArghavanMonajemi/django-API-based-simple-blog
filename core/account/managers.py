@@ -8,7 +8,7 @@ class UserManager(BaseUserManager):
         for authentication instead of usernames.
     """
 
-    def _create_user(self, email, password, **extra_fields):
+    def create_user(self, email, password, **extra_fields):
         """
             Create and save a user with the given email and password.
         """
