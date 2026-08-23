@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "account",
     "blog",
     "rest_framework",
+    'rest_framework.authtoken',
     'django_filters',
     'drf_yasg',
 ]
@@ -128,3 +129,14 @@ MEDIA_URL = "/media/"
 User config
 """
 AUTH_USER_MODEL = "account.User"
+
+"""
+Rest Framework Config
+"""
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
