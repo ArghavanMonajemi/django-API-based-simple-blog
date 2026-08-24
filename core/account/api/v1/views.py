@@ -1,15 +1,22 @@
+from django.contrib.auth.base_user import AbstractBaseUser
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from .serializer import RegistrationSerializer, CustomAuthTokenSerializer, CustomTokenObtainPairSerializer
+from .serializer import RegistrationSerializer, CustomAuthTokenSerializer, CustomTokenObtainPairSerializer, \
+    PasswordChangeSerializer
 from rest_framework import status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 
 class RegistrationView(generics.GenericAPIView):
     serializer_class = RegistrationSerializer
+
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -47,5 +54,26 @@ class CustomDiscardToken(APIView):
             request.user.auth_token.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class PasswordChangeView(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PasswordChangeSerializer
+    model = User
+
+    def get_object(self):
+        return self.request.user
+
+    def put(self, request, *args, **kwargs):
+        user = self.get_object()
+        serializer = self.serializer_class(data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            if not user.check_password(serializer.data['old_password']):
+                return Response({'old_password': ['wrong password']}, status=status.HTTP_400_BAD_REQUEST)
+            user.set_password(serializer.validated_data['new_password'])
+            user.save()
+            return Response({'detail': ['password has been changed']}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
