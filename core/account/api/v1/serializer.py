@@ -4,24 +4,27 @@ from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 import django.contrib.auth.password_validation as validators
 from django.core.exceptions import ValidationError
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
     confirmation_password = serializers.CharField(write_only=True)
+
     class Meta:
         model = User
-        fields = ('email','password','confirmation_password')
+        fields = ('email', 'password', 'confirmation_password')
 
     def validate(self, attrs):
         if attrs['password'] != attrs['confirmation_password']:
-            raise serializers.ValidationError({'detail':'Passwords must match'})
+            raise serializers.ValidationError({'detail': 'Passwords must match'})
         try:
             validators.validate_password(attrs['password'])
         except ValidationError as e:
-            raise serializers.ValidationError({'detail':list(e.messages)})
+            raise serializers.ValidationError({'detail': list(e.messages)})
         return attrs
 
     def create(self, validated_data):
-        validated_data.pop('confirmation_password',None)
+        validated_data.pop('confirmation_password', None)
         return User.objects.create_user(**validated_data)
 
 
@@ -61,3 +64,12 @@ class CustomAuthTokenSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data["email"] = self.user.email
+        data["id"] = self.user.id
+        return data
