@@ -1,4 +1,4 @@
-from account.models import User
+from account.models import User, Profile
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
@@ -88,3 +88,13 @@ class PasswordChangeSerializer(serializers.Serializer):
         except ValidationError as e:
             raise serializers.ValidationError({'detail': list(e.messages)})
         return attrs
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user_id = serializers.ReadOnlyField(source='user.id')
+    user_email = serializers.ReadOnlyField(source='user.email')
+
+    class Meta:
+        model = Profile
+        fields = ('user_id', 'user_email', 'first_name', 'last_name', 'image', 'bio')
+        read_only_fields = ('user_id', 'user_email',)
