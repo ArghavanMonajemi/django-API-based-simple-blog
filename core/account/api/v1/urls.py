@@ -1,7 +1,7 @@
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import path
 from .views import (RegistrationView, CustomAuthToken, CustomDiscardToken, CustomTokenObtainPairView,
-                    PasswordChangeView, ProfileView)
+                    PasswordChangeView, ProfileView, SendEmailView)
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView
@@ -29,4 +29,7 @@ urlpatterns = [
 
     # profile
     path('profile/', ProfileView.as_view(), name='profile'),
+
+    # email
+    path('email_test/', SendEmailView.as_view(), name='email-test'),
 ]

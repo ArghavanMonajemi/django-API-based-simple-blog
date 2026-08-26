@@ -6,8 +6,8 @@ from .models import User,Profile
 
 class CustomUserAdmin(UserAdmin):
     model = User
-    list_display = ('email','is_staff','is_superuser','is_active','created_date')
-    list_filter = ('email','is_staff','is_superuser','is_active','created_date')
+    list_display = ('email','is_staff','is_superuser','is_active','is_verified','created_date')
+    list_filter = ('email','is_staff','is_superuser','is_active','is_verified','created_date')
     fieldsets = (
         ('Authentication', {'fields': ('email', 'password')}),
         ("Permissions", {'fields': ("is_staff", "is_active", "is_superuser")}),

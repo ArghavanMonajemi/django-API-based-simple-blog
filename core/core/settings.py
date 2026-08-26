@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_filters',
     'drf_yasg',
+    'mail_templated',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,13 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication'
     ]
 }
+
+"""
+Email Config
+"""
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp4dev'  # SMTP server host
+EMAIL_PORT = 25  # SMTP server port (587 for TLS, 465 for SSL)
+EMAIL_USE_TLS = False  # True for TLS, False for SSL
+EMAIL_HOST_USER = ''  # SMTP server username
+EMAIL_HOST_PASSWORD = ''  # SMTP server password
