@@ -24,4 +24,4 @@ jobs:
     - name: Setup Docker-Compose
       run: docker compose up -d
     - name: Run Tests
-      run: docker compose run --rm web sh -c "flake8 && pytest ."
+      run: docker compose run --rm django-docker sh -c "flake8 && pytest ."
