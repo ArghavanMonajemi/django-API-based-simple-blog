@@ -2,7 +2,7 @@ from django.urls import path
 from .views import CategoryViewSet, PostViewSet
 from rest_framework.routers import DefaultRouter
 
-app_name = 'blog-api-v1'
+app_name = 'api-v1'
 router = DefaultRouter()
 router.register('categories', CategoryViewSet, basename='category')
 router.register('posts', PostViewSet, basename='post')
