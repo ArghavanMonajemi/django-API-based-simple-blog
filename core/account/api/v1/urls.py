@@ -21,9 +21,7 @@ urlpatterns = [
     # logout
     path("token/logout/", CustomDiscardToken.as_view(), name="token-logout"),
     # login JWT
-    path(
-        "jwt/create/", CustomTokenObtainPairView.as_view(), name="jwt-create"
-    ),
+    path("jwt/create/", CustomTokenObtainPairView.as_view(), name="jwt-create"),
     path("jwt/refresh/", TokenRefreshView.as_view(), name="jwt-create"),
     path("jwt/verify/", TokenVerifyView.as_view(), name="jwt-create"),
     # password change

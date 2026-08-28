@@ -28,9 +28,7 @@ class Migration(migrations.Migration):
                 ("last_name", models.CharField(max_length=255)),
                 (
                     "image",
-                    models.ImageField(
-                        blank=True, null=True, upload_to="profile_pics"
-                    ),
+                    models.ImageField(blank=True, null=True, upload_to="profile_pics"),
                 ),
                 ("bio", models.TextField()),
                 ("created_date", models.DateTimeField(auto_now_add=True)),

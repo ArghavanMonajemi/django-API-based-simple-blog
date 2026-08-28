@@ -5,12 +5,8 @@ class Post(models.Model):
     author = models.ForeignKey("account.Profile", on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     content = models.TextField()
-    category = models.ForeignKey(
-        "blog.Category", on_delete=models.SET_NULL, null=True
-    )
-    image = models.ImageField(
-        upload_to="posts/%Y/%m/%d", blank=True, null=True
-    )
+    category = models.ForeignKey("blog.Category", on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(upload_to="posts/%Y/%m/%d", blank=True, null=True)
     status = models.BooleanField(default=False)
     update_date = models.DateTimeField(auto_now=True)
     create_date = models.DateTimeField(auto_now_add=True)

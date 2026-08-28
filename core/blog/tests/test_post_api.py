@@ -7,9 +7,7 @@ from account.models import User
 
 @pytest.fixture
 def common_user():
-    return User.objects.create_user(
-        email="test@test.com", password="test12345"
-    )
+    return User.objects.create_user(email="test@test.com", password="test12345")
 
 
 @pytest.mark.django_db

@@ -60,9 +60,7 @@ class CustomAuthToken(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         token, created = Token.objects.get_or_create(user=user)
-        return Response(
-            {"token": token.key, "user_id": user.pk, "email": user.email}
-        )
+        return Response({"token": token.key, "user_id": user.pk, "email": user.email})
 
 
 class CustomDiscardToken(APIView):
@@ -142,9 +140,9 @@ class AccountActivationView(APIView):
 
     def post(self, request, token, *args, **kwargs):
         try:
-            user_id = jwt.decode(
-                token, settings.SECRET_KEY, algorithms=["HS256"]
-            ).get("user_id")
+            user_id = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"]).get(
+                "user_id"
+            )
             user_obj = get_object_or_404(User, pk=user_id)
             if user_obj.is_verified:
                 return Response(
@@ -173,9 +171,7 @@ class AccountActivationView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
-            return Response(
-                {"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class AccountResendActivationView(APIView):

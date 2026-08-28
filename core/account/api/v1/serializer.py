@@ -16,9 +16,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         if attrs["password"] != attrs["confirmation_password"]:
-            raise serializers.ValidationError(
-                {"detail": "Passwords must match"}
-            )
+            raise serializers.ValidationError({"detail": "Passwords must match"})
         try:
             validators.validate_password(attrs["password"])
         except ValidationError as e:
@@ -81,9 +79,7 @@ class PasswordChangeSerializer(serializers.Serializer):
 
     def validate(self, attrs):
         if attrs["new_password"] != attrs["new_password_confirmation"]:
-            raise serializers.ValidationError(
-                {"detail": "Passwords must match"}
-            )
+            raise serializers.ValidationError({"detail": "Passwords must match"})
         try:
             validators.validate_password(attrs["new_password"])
         except ValidationError as e:
