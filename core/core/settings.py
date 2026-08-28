@@ -39,11 +39,11 @@ INSTALLED_APPS = [
     "account",
     "blog",
     "rest_framework",
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt',
-    'django_filters',
-    'drf_yasg',
-    'mail_templated',
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
+    "django_filters",
+    "drf_yasg",
+    "mail_templated",
 ]
 
 MIDDLEWARE = [
@@ -61,7 +61,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -136,20 +136,20 @@ AUTH_USER_MODEL = "account.User"
 Rest Framework Config
 """
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ]
 }
 
 """
 Email Config
 """
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp4dev'  # SMTP server host
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp4dev"  # SMTP server host
 EMAIL_PORT = 25  # SMTP server port (587 for TLS, 465 for SSL)
 EMAIL_USE_TLS = False  # True for TLS, False for SSL
-EMAIL_HOST_USER = ''  # SMTP server username
-EMAIL_HOST_PASSWORD = ''  # SMTP server password
+EMAIL_HOST_USER = ""  # SMTP server username
+EMAIL_HOST_PASSWORD = ""  # SMTP server password
