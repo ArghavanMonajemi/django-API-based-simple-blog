@@ -17,9 +17,9 @@ jobs:
     - name: Create test environment file
       run: |
           cat > .env <<EOF
-          SECRET_KEY=${{ secrets.TEST_SECRET_KEY }}
+          SECRET_KEY=test-only-secret-key-for-ci
           DEBUG=False
-          DATABASE_URL=${{ secrets.TEST_DATABASE_URL }}
+          DATABASE_URL=False
           EOF
     - name: Setup Docker-Compose
       run: docker compose up -d
