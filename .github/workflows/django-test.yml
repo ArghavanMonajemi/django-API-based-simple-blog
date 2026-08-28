@@ -22,6 +22,6 @@ jobs:
           DATABASE_URL=False
           EOF
     - name: Setup Docker-Compose
-      run: docker compose up -d
+      run: docker compose run -d
     - name: Run Tests
-      run: docker exec django-docker -T sh -c "flake8 && pytest ."
+      run: docker exec -T django-docker sh -c "flake8 && pytest ."
