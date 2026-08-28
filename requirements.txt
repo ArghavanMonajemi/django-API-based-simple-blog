@@ -13,3 +13,7 @@ django-mail-templated
 # reformat and pep8 standards related modules
 flake8
 black
+
+# test modules
+pytest
+pytest-django
