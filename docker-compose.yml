@@ -1,4 +1,11 @@
 services:
+
+  redis:
+    image: redis
+    command: redis-server --save 60 1 --loglevel warning
+    ports:
+      - "6379:6379"
+
   backend:
     build: .
     container_name: django-docker

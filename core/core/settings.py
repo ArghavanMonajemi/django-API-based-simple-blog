@@ -153,3 +153,8 @@ EMAIL_PORT = 25  # SMTP server port (587 for TLS, 465 for SSL)
 EMAIL_USE_TLS = False  # True for TLS, False for SSL
 EMAIL_HOST_USER = ""  # SMTP server username
 EMAIL_HOST_PASSWORD = ""  # SMTP server password
+
+"""
+Celery Config
+"""
+CELERY_BROKER_URL = "redis://redis:6379"
