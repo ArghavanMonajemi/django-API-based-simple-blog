@@ -9,6 +9,7 @@ django-filter
 drf-yasg[validation]
 djangorestframework-simplejwt
 django-mail-templated
+django-cors-headers
 
 # reformat and pep8 standards related modules
 flake8
