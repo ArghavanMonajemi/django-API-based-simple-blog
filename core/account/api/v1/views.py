@@ -204,6 +204,7 @@ def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
     return str(refresh.access_token)
 
+
 class SendEmail(APIView):
     def get(request, *args, **kwargs):
         send_email.delay()
