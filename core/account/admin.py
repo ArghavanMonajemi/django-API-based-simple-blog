@@ -12,7 +12,6 @@ class CustomUserAdmin(UserAdmin):
         "is_superuser",
         "is_active",
         "is_verified",
-        "created_date",
     )
     list_filter = (
         "email",
@@ -20,13 +19,12 @@ class CustomUserAdmin(UserAdmin):
         "is_superuser",
         "is_active",
         "is_verified",
-        "created_date",
     )
     fieldsets = (
         ("Authentication", {"fields": ("email", "password")}),
         ("Permissions", {"fields": ("is_staff", "is_active", "is_superuser")}),
         ("Groups Permissons", {"fields": ("groups", "user_permissions")}),
-        ("Important Dates", {"fields": ("last_login", "created_date")}),
+        ("Important Dates", {"fields": ("last_login",)}),
     )
     add_fieldsets = (
         (

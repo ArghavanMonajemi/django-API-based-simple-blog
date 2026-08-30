@@ -22,6 +22,7 @@ from mail_templated import EmailMessage
 from ..utils import EmailThread
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
+from account.tasks import send_email
 
 User = get_user_model()
 
@@ -202,3 +203,9 @@ class AccountResendActivationView(APIView):
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
     return str(refresh.access_token)
+
+
+class SendEmail(APIView):
+    def get(request, *args, **kwargs):
+        send_email.delay()
+        return Response({"detail": "email has been sent"})

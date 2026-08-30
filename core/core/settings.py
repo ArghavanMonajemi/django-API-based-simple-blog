@@ -157,6 +157,11 @@ EMAIL_HOST_USER = ""  # SMTP server username
 EMAIL_HOST_PASSWORD = ""  # SMTP server password
 
 """
+Celery Config
+"""
+CELERY_BROKER_URL = "redis://redis:6379"
+
+"""
 CORS Header config
 """
 CORS_ALLOWED_ORIGINS = [

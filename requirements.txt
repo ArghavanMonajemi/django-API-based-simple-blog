@@ -19,3 +19,7 @@ black
 pytest
 pytest-django
 faker
+
+#background process and caching
+redis
+celery
