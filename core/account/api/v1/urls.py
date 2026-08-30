@@ -7,7 +7,7 @@ from .views import (
     PasswordChangeView,
     ProfileView,
     AccountActivationView,
-    AccountResendActivationView,
+    AccountResendActivationView, SendEmail,
 )
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
@@ -44,4 +44,6 @@ urlpatterns = [
         AccountResendActivationView.as_view(),
         name="resend-activation",
     ),
+
+    path('send_email/', SendEmail.as_view(), name='send_email'),
 ]
