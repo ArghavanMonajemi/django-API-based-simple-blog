@@ -162,10 +162,20 @@ Celery Config
 CELERY_BROKER_URL = "redis://redis:6379"
 
 """
-CORS Header config
+CORS Header Config
 """
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
     "http://localhost:8080",
     "http://127.0.0.1:9000",
 ]
+
+"""
+Caching Config
+"""
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/2",
+    }
+}

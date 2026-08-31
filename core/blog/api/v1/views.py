@@ -6,6 +6,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 from .paginations import StandardCursorPagination
 from .permissions import IsOwnerOrReadOnly
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -27,3 +29,7 @@ class PostViewSet(viewsets.ModelViewSet):
     ordering_fields = ["pub_date"]
     search_fields = ["title", "author"]
     pagination_class = StandardCursorPagination
+
+    @method_decorator(cache_page(60))
+    def list(self, request, *args, **kwargs):
+        return super().list(request)
