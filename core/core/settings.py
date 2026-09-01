@@ -77,9 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+# Default database for development phase
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -123,7 +121,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "/staticfiles",
 ]
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "static"
 
 MEDIA_ROOT = BASE_DIR / "media"
@@ -179,3 +177,19 @@ CACHES = {
         "LOCATION": "redis://redis:6379/2",
     }
 }
+
+"""
+PostgreSQL Config for stage and production versions
+"""
+"""
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("POSTGRES_DB"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("POSTGRES_HOST", "db"),
+        "PORT": os.environ.get("POSTGRES_PORT", "5432"),
+    }
+}
+"""

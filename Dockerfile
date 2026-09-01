@@ -10,14 +10,21 @@ WORKDIR /app
 # Set environment variables
 # Prevents Python from writing pyc files to disk
 ENV PYTHONDONTWRITEBYTECODE=1
-#Prevents Python from buffering stdout and stderr
+# Prevents Python from buffering stdout and stderr
 ENV PYTHONUNBUFFERED=1
+
+# --- ADDED: Install system dependencies for PostgreSQL ---
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+# ---------------------------------------------------------
 
 # Upgrade pip
 RUN pip install --upgrade pip
 
-# Copy the Django project  and install dependencies
-COPY requirements.txt  /app/
+# Copy the Django project and install dependencies
+COPY requirements.txt /app/
 
 # run this command to install all dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -27,4 +34,3 @@ COPY ./core /app/
 
 # Expose the Django port
 EXPOSE 8000
-
