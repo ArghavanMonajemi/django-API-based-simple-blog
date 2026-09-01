@@ -25,6 +25,6 @@ redis
 celery
 django-redis
 
-#production related modules
+#deployment modules
 psycopg[binary]
 gunicorn
