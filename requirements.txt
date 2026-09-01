@@ -24,3 +24,7 @@ faker
 redis
 celery
 django-redis
+
+#production related modules
+psycopg[binary]
+gunicorn
